@@ -1,19 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbr_base.c                                   :+:      :+:    :+:   */
+/*   ft_putadd_base.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ydumaine <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/14 12:48:11 by ydumaine          #+#    #+#             */
-/*   Updated: 2022/03/15 21:48:49 by ydumaine         ###   ########.fr       */
+/*   Updated: 2022/03/15 22:03:02 by ydumaine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
 
-int	ft_adres(int i, int nbr, int *temp)
+int	ft_adres_2(int i, unsigned long long int nbr, unsigned long long int *temp)
 {
 	int	u;
 
@@ -30,11 +30,11 @@ int	ft_adres(int i, int nbr, int *temp)
 	return (u);
 }
 
-int	ft_putnbr_base(int nbr, char *base, int	count)
+int	ft_putadd_base(unsigned long long int  nbr, char *base, int	count)
 {
 	int	i;
-	int	temp[100];
-	int	u;
+	unsigned long long int	temp[100];
+	unsigned long long int	u;
 
 	i = 0;
 	if (nbr == 0)
@@ -43,13 +43,7 @@ int	ft_putnbr_base(int nbr, char *base, int	count)
 	{
 		while (base[i])
 			i++;
-		if (nbr < 0)
-		{
-			ft_putchar('-', 1);
-			count++;
-			i = -i;
-		}
-		u = ft_adres(i, nbr, temp);
+		u = ft_adres_2(i, nbr, temp);
 		while (--u >= 0)
 		{
 			ft_putchar(base[temp[u]], 1);

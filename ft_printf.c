@@ -6,7 +6,7 @@
 /*   By: ydumaine <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/13 15:15:41 by ydumaine          #+#    #+#             */
-/*   Updated: 2022/03/15 20:22:20 by ydumaine         ###   ########.fr       */
+/*   Updated: 2022/03/15 22:03:48 by ydumaine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,6 @@ int ft_printf(const char *str, ...)
 			str++; 
 		}
 	}
-	count++;
 	va_end(args);
 	return (count);	
 }
@@ -62,7 +61,7 @@ int	ft_choose_function(long long int arg, char c, int count)
 	if (c == 's')
 		count = ft_putstr((char *)arg, count);
 	if (c == 'p')
-		count = ft_putnbr_base((unsigned int)&arg, "0123456789abcdef", count);
+		count = ft_putadd_base((int)&arg, "0123456789abcdef", count);
 	if (c == 'd')
 		count = ft_putnbr((int)arg, count);
 	if (c == 'i')
@@ -77,12 +76,14 @@ int	ft_choose_function(long long int arg, char c, int count)
 		count = ft_putchar((char)arg, count);
 	return (count);
 }
-/*
+
 int	main()
 {
 	int i;
 	int count;
-	i = 10;
-	count = ft_printf("", i, 20);
+	i = -1;
+	count = ft_printf("%d %d", i, -1);
 	ft_printf("\ncount value : %d", count);
-}*/
+	//ft_printf("\nadd my fonciton  : %p", &count);
+	printf("\nadd sys fonction : %d", &count);
+}

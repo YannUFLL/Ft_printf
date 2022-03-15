@@ -6,11 +6,10 @@
 /*   By: ydumaine <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/14 12:18:24 by ydumaine          #+#    #+#             */
-/*   Updated: 2022/03/15 19:53:51 by ydumaine         ###   ########.fr       */
+/*   Updated: 2022/03/15 21:39:11 by ydumaine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "ft_printf.h"
-
 int	ft_putchar(char c, int count)
 {
 	write(1, &c, 1);
@@ -32,16 +31,27 @@ int	ft_putstr(char *str, int count)
 	return (count);
 }
 
-int	ft_putnbr(int n, int count)
+int	ft_putnbr_r(int n, int count)
 {
 	if (n > 0)
 		n = -n;
 	if (n <= -10)
 	{
-		count = ft_putnbr(n / 10, count);
+		count = ft_putnbr_r(n / 10, count);
 	}
 	ft_putchar((- (n % -10) + '0'), 1);
 	count++;
+	return (count);
+}
+
+int ft_putnbr(int n, int count)
+{
+	if (n < 0)
+	{
+		ft_putchar('-', 1);
+		count++;
+	}
+	count = ft_putnbr_r(n, count);
 	return (count);
 }
 
