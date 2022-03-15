@@ -6,48 +6,52 @@
 /*   By: ydumaine <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/14 12:18:24 by ydumaine          #+#    #+#             */
-/*   Updated: 2022/03/14 19:52:00 by ydumaine         ###   ########.fr       */
+/*   Updated: 2022/03/15 19:53:51 by ydumaine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include <unistd.h>
+#include "ft_printf.h"
 
-void	ft_putchar(char c, char *count)
+int	ft_putchar(char c, int count)
 {
 	write(1, &c, 1);
-	*(count++);
+	count++;
+	return (count);
 }
 
-/*
-void	ft_putnbr(int n, char *count)
+int	ft_putstr(char *str, int count)
+{
+	int	i;
+
+	i = 0;
+	while (str[i])
+	{
+		write(1, &str[i], 1);
+		i++;
+		count++;
+	}
+	return (count);
+}
+
+int	ft_putnbr(int n, int count)
 {
 	if (n > 0)
 		n = -n;
 	if (n <= -10)
 	{
-		ft_putnbr(n / 10);
+		count = ft_putnbr(n / 10, count);
 	}
-		write(1 ,((-(n % -10) + '0'), 1;
-		*count++;
-}*/
+	ft_putchar((- (n % -10) + '0'), 1);
+	count++;
+	return (count);
+}
 
-void	ft_putnbr_unsigned_f(float n, char *count)
+int	ft_putnbr_unsigned(unsigned int n, int count)
 {
 	if (n >= 10)
 	{
-		ft_putnbr_unsigned_f(n / 10, &count);
+		ft_putnbr_unsigned(n / 10, count);
 	}
-	//write(1 ,(( n % 10 + '0')), 1);
-	*(count++);
-}
-#include <stdio.h>
-int	main()
-{
-	float test;
-	int	count;
-	count = 0;
-	test = 140000000000.44;
-	printf("\n%d", (long int)(test));
-	printf("\n%f", (float)(test));
-	ft_putnbr_unsigned_f(test, &count);
-	printf("%d", count);
+	ft_putchar((( n % 10 + '0')), 1);
+	count ++;
+	return (count); 
 }
