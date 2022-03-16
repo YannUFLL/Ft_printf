@@ -6,14 +6,14 @@
 /*   By: ydumaine <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/14 12:48:11 by ydumaine          #+#    #+#             */
-/*   Updated: 2022/03/15 21:48:49 by ydumaine         ###   ########.fr       */
+/*   Updated: 2022/03/16 14:36:10 by ydumaine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
 
-int	ft_adres(int i, int nbr, int *temp)
+int	ft_adres(int i, int unsigned nbr, int *temp)
 {
 	int	u;
 
@@ -30,24 +30,27 @@ int	ft_adres(int i, int nbr, int *temp)
 	return (u);
 }
 
-int	ft_putnbr_base(int nbr, char *base, int	count)
+int	ft_putnbr_base(int old_nbr, char *base, int	count)
 {
 	int	i;
 	int	temp[100];
 	int	u;
+	unsigned int nbr;
 
+	nbr = old_nbr;
 	i = 0;
 	if (nbr == 0)
+	{
 		ft_putchar(base[0], 1);
+		count++;
+	}
 	else
 	{
 		while (base[i])
 			i++;
 		if (nbr < 0)
 		{
-			ft_putchar('-', 1);
-			count++;
-			i = -i;
+			nbr = 4294967285 - old_nbr;
 		}
 		u = ft_adres(i, nbr, temp);
 		while (--u >= 0)

@@ -6,10 +6,12 @@
 /*   By: ydumaine <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/14 12:18:24 by ydumaine          #+#    #+#             */
-/*   Updated: 2022/03/15 21:39:11 by ydumaine         ###   ########.fr       */
+/*   Updated: 2022/03/16 14:51:32 by ydumaine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "ft_printf.h"
+
+#include <stdio.h>
 int	ft_putchar(char c, int count)
 {
 	write(1, &c, 1);
@@ -22,6 +24,11 @@ int	ft_putstr(char *str, int count)
 	int	i;
 
 	i = 0;
+	if (str == NULL)
+	{
+		write(1, "(null)", 6);
+		return (count + 6);
+	}
 	while (str[i])
 	{
 		write(1, &str[i], 1);
@@ -59,9 +66,9 @@ int	ft_putnbr_unsigned(unsigned int n, int count)
 {
 	if (n >= 10)
 	{
-		ft_putnbr_unsigned(n / 10, count);
+		count = ft_putnbr_unsigned(n / 10, count);
 	}
 	ft_putchar((( n % 10 + '0')), 1);
-	count ++;
+	count++;
 	return (count); 
 }

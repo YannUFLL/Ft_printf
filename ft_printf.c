@@ -6,11 +6,12 @@
 /*   By: ydumaine <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/13 15:15:41 by ydumaine          #+#    #+#             */
-/*   Updated: 2022/03/15 22:03:48 by ydumaine         ###   ########.fr       */
+/*   Updated: 2022/03/16 15:32:59 by ydumaine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+#include <stdio.h>
 
 int	ft_check_letter(char c)
 {
@@ -39,7 +40,10 @@ int ft_printf(const char *str, ...)
 		if (*str == '%' && ft_check_letter(*(str + 1)))
 		{
 			str++;
-			count = ft_choose_function(va_arg(args, long long int), *str, count);
+			if (*str == '%')
+				count = ft_putchar('%', count);
+			else 
+				count = ft_choose_function(va_arg(args, long long int), *str, count);
 			str++;
 		}
 		else
@@ -61,7 +65,7 @@ int	ft_choose_function(long long int arg, char c, int count)
 	if (c == 's')
 		count = ft_putstr((char *)arg, count);
 	if (c == 'p')
-		count = ft_putadd_base((int)&arg, "0123456789abcdef", count);
+		count = ft_putadd_base((unsigned long long int)arg, "0123456789abcdef", count);
 	if (c == 'd')
 		count = ft_putnbr((int)arg, count);
 	if (c == 'i')
@@ -73,17 +77,22 @@ int	ft_choose_function(long long int arg, char c, int count)
 	if (c == 'X')
 		count = ft_putnbr_base((int)arg, "0123456789ABCDEF", count);
 	if (c == '%')
-		count = ft_putchar((char)arg, count);
+		count = ft_putchar('%', count);
 	return (count);
 }
-
+/*
 int	main()
 {
-	int i;
-	int count;
-	i = -1;
-	count = ft_printf("%d %d", i, -1);
-	ft_printf("\ncount value : %d", count);
-	//ft_printf("\nadd my fonciton  : %p", &count);
-	printf("\nadd sys fonction : %d", &count);
-}
+	unsigned int test;
+	int	count;
+	count = 0;
+	test = -10;
+	char *str1;
+	char *str2;
+
+	str1 = NULL;
+	str2 = NULL;
+	ft_printf("%%%c%%%s%%%d%%%i%%%u%%%x%%%X%%%% %%%c%%%s%%%d%%%i%%%u%%%x%%%X%%%% %%%c%%%s%%%d%%%i%%%u%%%x%%%X%%%% %c%%", 'A', "42", 42, 42 ,42 , 42, 42, 'B', "-42", -42, -42 ,-42 ,-42, 42, 'C', "0", 0, 0 ,0 ,0, 42, 0);
+	count = printf("\n count myfunc %d", count);
+	count = printf("\n count myfunc %d", count);
+}*/
