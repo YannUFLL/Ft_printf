@@ -6,12 +6,11 @@
 /*   By: ydumaine <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/13 15:15:41 by ydumaine          #+#    #+#             */
-/*   Updated: 2022/03/16 16:39:48 by ydumaine         ###   ########.fr       */
+/*   Updated: 2022/03/20 16:34:32 by ydumaine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-#include <stdio.h>
 
 int	ft_check_letter(char c)
 {
