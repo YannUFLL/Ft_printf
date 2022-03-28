@@ -6,12 +6,12 @@
 #    By: ydumaine <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/02 12:48:02 by ydumaine          #+#    #+#              #
-#    Updated: 2022/03/20 17:02:44 by ydumaine         ###   ########.fr        #
+#    Updated: 2022/03/28 19:29:51 by ydumaine         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRCS = ft_printf.c ft_printf_utils.c ft_putnbr_base.c\
-ft_putadd_base.c\
+SRCS = ft_printf.c ft_printf_utils.c ft_putnbr_base2.c\
+ft_putadd_base2.c\
 
 OBJS = ${SRCS:.c=.o}
 
