@@ -17,12 +17,10 @@ int	ft_adres2(int i, int unsigned nbr, int *temp)
 	int	u;
 
 	u = 0;
-	while (nbr > 0 || nbr < 0)
+	while (nbr != 0)
 	{
 		if (nbr > 0)
 			temp[u] = nbr % i;
-		if (nbr < 0)
-			temp[u] = - (nbr % i);
 		nbr = nbr / i;
 		u++;
 	}
@@ -44,10 +42,6 @@ int	ft_putnbr_base2(int old_nbr, char *base, int count)
 	{
 		while (base[i])
 			i++;
-		if (nbr < 0)
-		{
-			nbr = 4294967285 - old_nbr;
-		}
 		u = ft_adres2(i, nbr, temp);
 		while (--u >= 0)
 		{
