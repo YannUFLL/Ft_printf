@@ -17,12 +17,10 @@ int	ft_addres_2(int i, unsigned long long int nbr, int *temp)
 	int	u;
 
 	u = 0;
-	while (nbr > 0 || nbr < 0)
+	while (nbr != 0)
 	{
 		if (nbr > 0)
 			temp[u] = nbr % i;
-		if (nbr < 0)
-			temp[u] = - (nbr % i);
 		nbr = nbr / (unsigned long long int)i;
 		u++;
 	}
